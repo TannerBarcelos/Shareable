@@ -1,0 +1,13 @@
+const express = require('express');
+const router = express.Router(); //for routing [look at docs]
+
+/**
+ * @route   GET api/users
+ * @desc    Test route
+ * @access  Public -> no token needed
+ */
+router.get('/', (req, res) => {
+  res.send('User route')
+})
+
+module.exports = router;

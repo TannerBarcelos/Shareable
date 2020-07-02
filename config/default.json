@@ -1,0 +1,3 @@
+{
+  "mongoURI": "mongodb+srv://tanner95:tanner95@shareable.fdrux.mongodb.net/Shareable?retryWrites=true&w=majority"
+}
