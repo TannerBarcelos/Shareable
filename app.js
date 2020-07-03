@@ -3,6 +3,9 @@ const app = express();
 const connectDB = require('./config/db')
 
 // middlewares
+app.use(express.json({
+  extended: false
+}))
 
 
 // connect to MongoDB
@@ -12,7 +15,7 @@ app.get('/', (req, res) => {
   res.send('Running')
 })
 
-// define routes [for router]
+// define routes
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
