@@ -80,7 +80,7 @@ router.post('/', [check('name', 'Name is required').not().isEmpty(),
     const salt = await bcrypt.genSalt(10);
     //step2) hash the password the user gave
     user.password = await bcrypt.hash(password, salt);
-    //step3) save the user -> will create a random id for the user 
+    //step3) save the user -> will create a random id for the user [user will be how we cann access a user with req.user sometime later]
     await user.save();
 
     // return the json web token
