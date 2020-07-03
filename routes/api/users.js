@@ -7,7 +7,7 @@ const config = require('config');
 const {
   check,
   validationResult
-} = require('express-validator/check'); // see express validator docs on how we actually can validate inputs using middleware in our routes
+} = require('express-validator'); // see express validator docs on how we actually can validate inputs using middleware in our routes
 
 
 // bring in user model to create new users
@@ -33,7 +33,7 @@ router.post('/', [check('name', 'Name is required').not().isEmpty(),
     });
   }
 
-  // pull out things from req.body to cleanup the interface here
+  // pull out things from req.body to cleanup the interface here using destructuring
   const {
     name,
     email,
