@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
+const Schema = mongoose.Schema; // this is one way of making a schema instance. It just makes line 5 new Schema nicer than new mongoose.Schema()
 // creates a model of what it means to be a user in our app
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   name: {
     type: String,
     required: true,
