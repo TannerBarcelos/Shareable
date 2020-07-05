@@ -1,6 +1,11 @@
 // react/dom imports
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+// redux / redux-store
+import {Provider} from 'react-redux';
+import store from '../store';
+
 // styles
 import '../../src/App.css';
 
@@ -12,21 +17,21 @@ import Login from './auth/Login';
 
 const App = () => {
   return (
-    // wrap whole app in a browser router to allow for history API and for routing
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Route exact path="/" component={Landing} />
-        <section className="ui container">
-          {/**wrap in swith for patch matching: 
-          any Link (replaces a in html can simply route to the routes we define here from anywhere in the app) */}
-          <Switch>
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/login" component={Login} />
-          </Switch>
-        </section>
-      </div>
-    </Router>
+    // wrap the whole app in the redux store provider and pass it the store we initialize in store.js
+    <Provider store={store}>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Route exact path="/" component={Landing} />
+          <section className="ui container">
+            <Switch>
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+            </Switch>
+          </section>
+        </div>
+      </Router>
+    </Provider>
   );
 };
 
