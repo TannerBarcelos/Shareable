@@ -14,6 +14,7 @@ import Navbar from './layout/Navbar';
 import Landing from './layout/Landing';
 import Register from './auth/Register';
 import Login from './auth/Login';
+import Alert from './layout/Alert';
 
 const App = () => {
   return (
@@ -22,15 +23,16 @@ const App = () => {
       <Router>
         <div className="App">
           <Navbar />
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={Landing} />{' '}
           <section className="ui container">
+            <Alert />
             <Switch>
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-            </Switch>
-          </section>
-        </div>
-      </Router>
+              <Route exact path="/register" component={Register} />{' '}
+              <Route exact path="/login" component={Login} />{' '}
+            </Switch>{' '}
+          </section>{' '}
+        </div>{' '}
+      </Router>{' '}
     </Provider>
   );
 };

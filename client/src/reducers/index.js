@@ -6,4 +6,9 @@ import {
   combineReducers
 } from 'redux';
 
-export default combineReducers({}); // will populate with all reducers later
+// reducer imports to make store
+import alert from '../reducers/alert'
+
+export default combineReducers({
+  alert
+}); // will populate with all reducers later
