@@ -6,6 +6,7 @@ import {getCurrentUsersProfile} from '../../actions/profile';
 
 //components
 import Spinner from '../layout/Spinner';
+import DashboardActions from './DashboardActions';
 
 const Dashboard = ({
   getCurrentUsersProfile,
@@ -19,7 +20,6 @@ const Dashboard = ({
 
   // load in the profile and until then, load a spinner like modal
   return loading && profile === null ? (
-    // <p>Hello</p>
     <Spinner />
   ) : (
     <Fragment>
@@ -28,7 +28,9 @@ const Dashboard = ({
         <i className="fas fa-user"></i>Welcome {user && user.name}
       </p>
       {profile !== null ? (
-        <Fragment>has</Fragment>
+        <Fragment>
+          <DashboardActions />
+        </Fragment>
       ) : (
         <Fragment>
           <p>You have not yet setup a profile. Please add some info</p>
@@ -41,7 +43,9 @@ const Dashboard = ({
   );
 };
 
+// proptypes ensure that a) we pass all the props in to safeguard errors but also to make sure they are of the exact type we expect
 Dashboard.propTypes = {
+  // ptfr shortcut
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,

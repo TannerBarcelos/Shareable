@@ -1,10 +1,15 @@
 import axios from 'axios';
 
 // actions
-import {setAlert} from './alert';
+import {
+  setAlert
+} from './alert';
 
 // action types
-import {GET_PROFILE, PROFILE_ERROR} from './types';
+import {
+  GET_PROFILE,
+  PROFILE_ERROR
+} from './types';
 
 // get current users profile: uses the token
 export const getCurrentUsersProfile = () => async (dispatch) => {
@@ -15,7 +20,6 @@ export const getCurrentUsersProfile = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.error(err);
     dispatch({
       type: PROFILE_ERROR,
       payload: {
@@ -26,7 +30,7 @@ export const getCurrentUsersProfile = () => async (dispatch) => {
   }
 };
 
-// create or update a profile: uses the form data and history object that exists in all props in router [async action creator here]
+// create or update a profile: uses the form data [passed into the action creator in the actual component to invoke the action] and history object that exists in all props in router [async action creator here]
 export const createProfile = (formData, history, edit = false) => async (
   dispatch
 ) => {
@@ -36,6 +40,10 @@ export const createProfile = (formData, history, edit = false) => async (
         'Content-Type': 'application/json',
       },
     };
+
+    // notice we use disdpatch everywhere we want to dispatch an action for.. different from react course where we return a simple object...
+    // this way is much more explicit and neat to me.. in order to allow this, though, we need to pass n the dispatch callback regardless of async or not
+    // for all the functions.. adobt this design paradigm
 
     const res = await axios.post('/api/profile', formData, config);
     dispatch({
