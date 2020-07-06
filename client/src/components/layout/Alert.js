@@ -3,17 +3,14 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 // this component will get the alerts in our store from the register stage and display them
-const Alert = ({alerts}) => {
-  if (alerts !== null && alerts.length > 0) {
-    return alerts.map((alert) => (
-      <div key={alert.id} className="ui red message">
-        {alert.msg}
-        {console.log(alert.msg)}
-      </div>
-    ));
-  }
-  return null;
-};
+const Alert = ({alerts}) =>
+  alerts !== null &&
+  alerts.length > 0 &&
+  alerts.map((alert) => (
+    <div key={alert.id} className="ui red message">
+      {alert.msg}
+    </div>
+  ));
 
 Alert.propTypes = {
   alerts: PropTypes.array.isRequired,

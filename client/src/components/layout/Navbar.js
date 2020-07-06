@@ -15,19 +15,21 @@ const Navbar = () => {
   return (
     <div className="ui secondary menu">
       <Link to="/">
-        <i className="far fa-handshake" style={localStyleLogo}></i>
-      </Link>
+        <i className="far fa-handshake" style={localStyleLogo}>
+          {' '}
+        </i>{' '}
+      </Link>{' '}
       <div className="right menu">
         <Link to="/" className="item active">
-          Home
-        </Link>
+          Home{' '}
+        </Link>{' '}
         <Link to="/register" className="item">
-          Register
-        </Link>
+          Register{' '}
+        </Link>{' '}
         <Link to="/login" className="item">
-          Login
-        </Link>
-      </div>
+          Login{' '}
+        </Link>{' '}
+      </div>{' '}
     </div>
   );
 };

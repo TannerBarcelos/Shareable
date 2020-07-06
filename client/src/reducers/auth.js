@@ -1,4 +1,11 @@
-import {REGISTER_SUCCESS, REGISTER_FAIL} from '../actions/types';
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  USER_LOADED,
+  AUTH_ERROR,
+  LOGIN_FAIL,
+  LOGIN_SUCCESS,
+} from '../actions/types';
 
 // handles registration success and failure
 
@@ -17,8 +24,16 @@ export default function (state = initialState, action) {
   const {type, payload} = action;
 
   switch (type) {
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload,
+      };
     // if success, save the token in to local storage and assign it the token from the response to the backend when we signed up
     case REGISTER_SUCCESS:
+    case LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token);
       // create new state with the old state including the new state and the opposite of the current state
       return {
@@ -28,8 +43,10 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
-    // failed to register so remove the token from local storage
+    // failed to register so remove the token from local storage, auth error and login fail all do same thing
     case REGISTER_FAIL:
+    case AUTH_ERROR:
+    case LOGIN_FAIL:
       localStorage.removeItem('token');
       return {
         ...state,

@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -8,7 +8,7 @@ import {setAlert} from '../../actions/alert';
 import {register} from '../../actions/auth';
 
 // destructure out props for simplicity and remember: the actions are in props, so, they as well are destrucutured. in this case, we destructured the setAlert for validation
-const Register = ({setAlert, register}) => {
+const Register = ({setAlert, register, isAuthenticated}) => {
   // we need state for the users input -> functional approach, so, using hooks
   const [formData, setFormData] = useState({
     name: '',
@@ -38,6 +38,11 @@ const Register = ({setAlert, register}) => {
       [e.target.name]: e.target.value,
     });
   };
+
+  // if user is authenticated, redirect to their profile creation
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Fragment>
@@ -107,13 +112,22 @@ const Register = ({setAlert, register}) => {
 };
 
 //  use Component.propTypes = {prop: type } see docs! https://reactjs.org/docs/typechecking-with-proptypes.html to type chck props in the app
+// and ensure they are used!
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+// get users state of logged in or not
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  };
 };
 
 //must pass connect mapStateToProps and mapDispatchToProps (or we can do what we did and pass the action in an object that way too [look at docs for mapdispatchtoprops..])
-export default connect(null, {
+export default connect(mapStateToProps, {
   setAlert,
   register,
 })(Register);
