@@ -8,6 +8,7 @@ import store from '../store';
 
 import {loadUser} from '../actions/auth';
 import setAuthToken from '../utils/setAuthToken';
+import PrivateRoute from './routing/PrivateRoute';
 
 // styles
 import '../../src/App.css';
@@ -18,6 +19,7 @@ import Landing from './layout/Landing';
 import Register from './auth/Register';
 import Login from './auth/Login';
 import Alert from './layout/Alert';
+import Dashboard from './dashboard/Dashboard';
 
 // if there is a token for the user on their browser, set it as the default header for all routes thereafter
 if (localStorage.token) {
@@ -35,16 +37,18 @@ const App = () => {
       <Router>
         <div className="ui container">
           <Navbar />
-          <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={Landing} />{' '}
           <section>
             <Alert />
             <Switch>
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-            </Switch>
-          </section>
-        </div>
-      </Router>
+              <Route exact path="/register" component={Register} />{' '}
+              <Route exact path="/login" component={Login} />{' '}
+              {/**private route component to protect routes in switch so you have to be authed to go to it: see routing/PrivateRoute to see implementation */}
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />{' '}
+            </Switch>{' '}
+          </section>{' '}
+        </div>{' '}
+      </Router>{' '}
     </Provider>
   );
 };
