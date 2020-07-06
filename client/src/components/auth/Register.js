@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 
 // actions
 import {setAlert} from '../../actions/alert';
+import {register} from '../../actions/auth';
 
-// destructure out props for simplicity
-const Register = ({setAlert}) => {
+// destructure out props for simplicity and remember: the actions are in props, so, they as well are destrucutured. in this case, we destructured the setAlert for validation
+const Register = ({setAlert, register}) => {
   // we need state for the users input -> functional approach, so, using hooks
   const [formData, setFormData] = useState({
     name: '',
@@ -25,7 +26,8 @@ const Register = ({setAlert}) => {
       // action! We are invoking an action here: remember it takes a message and alert type [in props as th second param of connect() maps dispatch actions to props]
       setAlert('Passwords do not match', 'danger'); //alert-type is the name of the bg color of the alert in the alert component -> dynamic styling
     } else {
-      console.log(formData);
+      // register action: imprted and passed through proptype
+      register({name, email, password});
     }
   };
 
@@ -78,7 +80,7 @@ const Register = ({setAlert}) => {
             type="password"
             name="password"
             placeholder="password"
-            minLength="6"
+            // minLength="6"
             value={password}
             onChange={(e) => onChange(e)}
           />
@@ -97,7 +99,7 @@ const Register = ({setAlert}) => {
           Submit
         </button>
         <p>
-          Already have an account? <Link to="/login"> Login </Link>
+          Already have an account ? <Link to="/login"> Login </Link>
         </p>
       </form>
     </Fragment>
@@ -107,7 +109,11 @@ const Register = ({setAlert}) => {
 //  use Component.propTypes = {prop: type } see docs! https://reactjs.org/docs/typechecking-with-proptypes.html to type chck props in the app
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
 //must pass connect mapStateToProps and mapDispatchToProps (or we can do what we did and pass the action in an object that way too [look at docs for mapdispatchtoprops..])
-export default connect(null, {setAlert})(Register);
+export default connect(null, {
+  setAlert,
+  register,
+})(Register);

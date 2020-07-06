@@ -21,18 +21,18 @@ const App = () => {
     // wrap the whole app in the redux store provider and pass it the store we initialize in store.js
     <Provider store={store}>
       <Router>
-        <div className="App">
+        <div className="ui container">
           <Navbar />
-          <Route exact path="/" component={Landing} />{' '}
-          <section className="ui container">
+          <Route exact path="/" component={Landing} />
+          <section>
             <Alert />
             <Switch>
-              <Route exact path="/register" component={Register} />{' '}
-              <Route exact path="/login" component={Login} />{' '}
-            </Switch>{' '}
-          </section>{' '}
-        </div>{' '}
-      </Router>{' '}
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+            </Switch>
+          </section>
+        </div>
+      </Router>
     </Provider>
   );
 };
