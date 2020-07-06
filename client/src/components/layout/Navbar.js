@@ -18,8 +18,12 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
   // if logged in will show this
   const authLinks = (
     <div className="right menu">
+      <Link to="/dashboard" className="item active">
+        <i className="fas fa-user" />
+        Profile
+      </Link>
       <Link to="/" className="item active" onClick={logout}>
-        <i className="fas fa-sign-out-alt"></i> Logout
+        <i className="fas fa-sign-out-alt"> </i> Logout
       </Link>
     </div>
   );
@@ -41,12 +45,14 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
 
   return (
     <div className="ui secondary menu">
-      <Link to="#!">
-        <i className="far fa-handshake" style={localStyleLogo}></i>
-      </Link>
+      <Link to="/">
+        <i className="far fa-handshake" style={localStyleLogo}>
+          {' '}
+        </i>{' '}
+      </Link>{' '}
       {!loading && (
-        <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>
-      )}
+        <Fragment> {isAuthenticated ? authLinks : guestLinks} </Fragment>
+      )}{' '}
     </div>
   );
 };
@@ -63,4 +69,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {logout})(Navbar);
+export default connect(mapStateToProps, {
+  logout,
+})(Navbar);

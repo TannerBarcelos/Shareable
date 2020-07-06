@@ -20,6 +20,7 @@ import Register from './auth/Register';
 import Login from './auth/Login';
 import Alert from './layout/Alert';
 import Dashboard from './dashboard/Dashboard';
+import CreateProfile from './profile-forms/CreateProfile';
 
 // if there is a token for the user on their browser, set it as the default header for all routes thereafter
 if (localStorage.token) {
@@ -45,6 +46,11 @@ const App = () => {
               <Route exact path="/login" component={Login} />{' '}
               {/**private route component to protect routes in switch so you have to be authed to go to it: see routing/PrivateRoute to see implementation */}
               <PrivateRoute exact path="/dashboard" component={Dashboard} />{' '}
+              <PrivateRoute
+                exact
+                path="/create-profile"
+                component={CreateProfile}
+              />{' '}
             </Switch>{' '}
           </section>{' '}
         </div>{' '}

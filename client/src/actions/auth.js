@@ -1,5 +1,7 @@
 import axios from 'axios';
-import {setAlert} from './alert';
+import {
+  setAlert
+} from './alert';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -8,6 +10,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  CLEAR_PROFILE
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -32,7 +35,11 @@ export const loadUser = () => async (dispatch) => {
 
 // register user: calls the backend route to register user : takes in name, email and password from object passed to it in componnet and will
 //make an ajax call to the backend auth route: we get the token back!
-export const register = ({name, email, password}) => async (dispatch) => {
+export const register = ({
+  name,
+  email,
+  password
+}) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -103,6 +110,9 @@ export const login = (email, password) => async (dispatch) => {
 
 // logout / clear the profile from memory
 export const logout = () => (dispatch) => {
+  dispatch({
+    type: CLEAR_PROFILE,
+  });
   dispatch({
     type: LOGOUT,
   });
