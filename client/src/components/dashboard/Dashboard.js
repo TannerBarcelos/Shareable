@@ -29,6 +29,7 @@ const Dashboard = ({
       </p>
       {profile !== null ? (
         <Fragment>
+          {/* If the users profile does exist, allow them to edit the profile by mounting this component here which has a link [designed as a button] to go to the /edit-profile route */}
           <DashboardActions />
         </Fragment>
       ) : (

@@ -3,14 +3,19 @@
  */
 
 // types import for safety and the centralized action tupes
-import {SET_ALERT, REMOVE_ALERT} from '../actions/types';
+import {
+  SET_ALERT,
+  REMOVE_ALERT
+} from '../actions/types';
 
-const initialState = [];
 
-// all reducers take in state (null initially ) and the action being dispatched to it
-export default function (state = initialState, action) {
+// alert reducer
+const alert = (state = [], action) => {
   // pull out type and payload from the action object that has been dispatched
-  const {type, payload} = action;
+  const {
+    type,
+    payload
+  } = action;
 
   // always return most current state and the data from the acction being dispatched (see the redux notes from grider course)
   // default is always return state itself
@@ -23,3 +28,5 @@ export default function (state = initialState, action) {
       return state;
   }
 }
+
+export default alert;

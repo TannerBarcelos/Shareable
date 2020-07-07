@@ -20,19 +20,22 @@ const initialState = {
 };
 
 // this allows us to just import the file and use it as the key for a reducer in our store rather than a named export
-export default function (state = initialState, action) {
+const authenticate = (state = initialState, action) => {
   // pull out the action data into a destructured statement
-  const {type, payload} = action;
+  const {
+    type,
+    payload
+  } = action;
 
   switch (type) {
     case USER_LOADED:
       return {
         ...state,
         isAuthenticated: true,
-        loading: false,
-        user: payload,
+          loading: false,
+          user: payload,
       };
-    // if success, save the token in to local storage and assign it the token from the response to the backend when we signed up
+      // if success, save the token in to local storage and assign it the token from the response to the backend when we signed up
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.setItem('token', payload.token);
@@ -41,10 +44,10 @@ export default function (state = initialState, action) {
         ...state,
         ...payload,
         isAuthenticated: true,
-        loading: false,
+          loading: false,
       };
 
-    // failed to register so remove the token from local storage, auth error and login fail all do same thing
+      // failed to register so remove the token from local storage, auth error and login fail all do same thing
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
@@ -53,11 +56,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         token: null,
-        isAuthenticated: false,
-        loading: false,
+          isAuthenticated: false,
+          loading: false,
       };
 
     default:
       return state;
   }
 }
+
+export default authenticate;

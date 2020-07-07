@@ -8,11 +8,14 @@ import {
 
 // reducer imports to make store
 import alert from './alert';
-import auth from './auth';
+import authenticate from './auth';
 import profile from './profile'
 
-export default combineReducers({
-  alert, // can access with alert
-  auth, // can access this state with state.auth in mapstate
+// our combined reducers to be passed into the store we create in store.js
+const reducers = combineReducers({
+  alert,
+  auth: authenticate,
   profile
-}); // will populate with all reducers later
+});
+
+export default reducers;
