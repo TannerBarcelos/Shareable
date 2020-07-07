@@ -56,7 +56,7 @@ const EditProfile = ({
       linkedin: loading || !profile.social ? '' : profile.social.linkedin,
       youtube: loading || !profile.social ? '' : profile.social.youtube,
     });
-  }, []); // do NOT forget the [] to run it only once
+  }, [loading, getCurrentUsersProfile]); // do NOT forget the [] to run it only once
 
   // destructure state so we can use them as variables
   const {
@@ -80,7 +80,7 @@ const EditProfile = ({
             name="location"
             onChange={(e) => onChange(e)}
           />{' '}
-          <small> City & state is suggested (eg.Santa Clara, CA) </small>{' '}
+          <small> City & state is suggested(eg.Santa Clara, CA) </small>{' '}
         </div>{' '}
         <div className="field">
           <label> Bio </label>{' '}

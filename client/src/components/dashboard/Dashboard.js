@@ -17,14 +17,14 @@ const Dashboard = ({
   // use effect lifecycle hook : same as componentdidmount
   useEffect(() => {
     getCurrentUsersProfile();
-  }, []);
+  }, [getCurrentUsersProfile]);
 
   // load in the profile and until then, load a spinner like modal
   return loading && profile === null ? (
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary"> Profile </h1>{' '}
+      <h1 className="large text-primary"> Profile Management </h1>{' '}
       <p>
         <i className="fas fa-user"> </i>Welcome {user && user.name}{' '}
       </p>{' '}
@@ -35,11 +35,13 @@ const Dashboard = ({
           <DashboardActions />
           <button
             className="ui red button"
-            style={{marginTop: '20px'}}
+            style={{
+              marginTop: '20px',
+            }}
             onClick={() => deleteAccount()}
           >
-            Delete My Account
-          </button>
+            Delete My Account{' '}
+          </button>{' '}
         </Fragment>
       ) : (
         <Fragment>

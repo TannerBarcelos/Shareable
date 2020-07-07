@@ -37,20 +37,10 @@ const Landing = ({isAuthenticated}) => {
         {' '}
         A social network{' '}
       </p>{' '}
-      <Link
-        to="/register"
-        className="item"
-        className="ui green button"
-        style={btn_box}
-      >
+      <Link to="/register" className="ui green button" style={btn_box}>
         Register{' '}
       </Link>{' '}
-      <Link
-        to="/login"
-        className="item"
-        className="ui blue button"
-        style={btn_box}
-      >
+      <Link to="/login" className="ui blue button" style={btn_box}>
         Login{' '}
       </Link>{' '}
     </div>
@@ -62,7 +52,9 @@ Landing.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-  return {isAuthenticated: state.auth.isAuthenticated};
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+  };
 };
 
 export default connect(mapStateToProps)(Landing);

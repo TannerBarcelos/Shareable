@@ -9,13 +9,15 @@ import {
 // reducer imports to make store
 import alert from './alert';
 import authenticate from './auth';
-import profile from './profile'
+import profile from './profile';
+import post from './post'
 
 // our combined reducers to be passed into the store we create in store.js
 const reducers = combineReducers({
   alert,
   auth: authenticate,
-  profile
+  profile,
+  post
 });
 
 export default reducers;

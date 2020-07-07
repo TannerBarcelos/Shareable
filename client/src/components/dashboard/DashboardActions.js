@@ -6,8 +6,8 @@ const DashboardActions = () => {
     <div>
       <Link to="/edit-profile" className="ui purple button">
         <i className="fas fa-user" />
-        Edit Profile
-      </Link>
+        Edit Profile{' '}
+      </Link>{' '}
     </div>
   );
 };

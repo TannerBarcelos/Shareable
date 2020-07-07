@@ -22,6 +22,9 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
         <i className="fas fa-user" />
         Profile
       </Link>
+      <Link to="/posts" className="item active">
+        <i className="fas fa-th-list"> </i> Feed
+      </Link>
       <Link to="/" className="item active" onClick={logout}>
         <i className="fas fa-sign-out-alt"> </i> Logout
       </Link>
@@ -32,14 +35,14 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
   const guestLinks = (
     <div className="right menu">
       <Link to="/" className="item active">
-        Home
-      </Link>
+        Home{' '}
+      </Link>{' '}
       <Link to="/register" className="item">
-        Register
-      </Link>
+        Register{' '}
+      </Link>{' '}
       <Link to="/login" className="item">
-        Login
-      </Link>
+        Login{' '}
+      </Link>{' '}
     </div>
   );
 
