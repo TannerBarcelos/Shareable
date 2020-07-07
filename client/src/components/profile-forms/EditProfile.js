@@ -36,7 +36,7 @@ const EditProfile = ({
   const onSubmit = (e) => {
     e.preventDefault();
     // dispatch the action to create a profile: send it all the data and hsitory onbject
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
 
   // display the social links container boolean
@@ -80,7 +80,7 @@ const EditProfile = ({
             name="location"
             onChange={(e) => onChange(e)}
           />{' '}
-          <small> City & state is suggested(eg.Santa Clara, CA) </small>{' '}
+          <small> City & state is suggested (eg.Santa Clara, CA) </small>{' '}
         </div>{' '}
         <div className="field">
           <label> Bio </label>{' '}
@@ -199,9 +199,9 @@ const EditProfile = ({
           </div>
         )}{' '}
         <input
-          className="ui green button"
+          className="ui yellow button"
           type="submit"
-          value="Create Profile"
+          value="Update Profile"
           style={{
             display: 'flex',
             marginTop: '10px',

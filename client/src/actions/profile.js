@@ -8,8 +8,12 @@ import {
 // action types
 import {
   GET_PROFILE,
-  PROFILE_ERROR
+  PROFILE_ERROR,
+  CLEAR_PROFILE,
+  ACCOUNT_DELETED
 } from './types';
+
+// these are all named exports as we know so they must be brought in explicitely in components with {}
 
 // get current users profile: uses the token
 export const getCurrentUsersProfile = () => async (dispatch) => {
@@ -30,7 +34,26 @@ export const getCurrentUsersProfile = () => async (dispatch) => {
   }
 };
 
-// create or update a profile: uses the form data [passed into the action creator in the actual component to invoke the action] and history object that exists in all props in router [async action creator here]
+//get a profile by ID
+export const getProfileById = userId => async dispatch => {
+  try {
+    const res = await axios.get(`/api/profile/${userId}`);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    })
+  } catch (err) {
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status
+      }
+    })
+  }
+}
+
+// create or update a profile
 export const createProfile = (formData, history, edit = false) => async (
   dispatch
 ) => {
@@ -41,7 +64,7 @@ export const createProfile = (formData, history, edit = false) => async (
       },
     };
 
-    // notice we use disdpatch everywhere we want to dispatch an action for.. different from react course where we return a simple object...
+    // notice we use dispatch everywhere we want to dispatch an action for.. different from react course where we return a simple object...
     // this way is much more explicit and neat to me.. in order to allow this, though, we need to pass n the dispatch callback regardless of async or not
     // for all the functions.. adobt this design paradigm
 
@@ -72,3 +95,27 @@ export const createProfile = (formData, history, edit = false) => async (
     });
   }
 };
+
+// delete account and profile: will know which one from the token
+export const deleteAccount = () => async dispatch => {
+  if (window.confirm('Are you sure? This cannot be undone')) {
+    try {
+      const res = await axios.delete('/api/profile');
+      dispatch({
+        type: CLEAR_PROFILE
+      })
+      dispatch({
+        type: ACCOUNT_DELETED,
+      })
+      dispatch(setAlert('Your accound has been permanantly deleted'))
+    } catch (err) {
+      dispatch({
+        type: PROFILE_ERROR,
+        payload: {
+          msg: err.response.statusText,
+          status: err.response.status
+        }
+      })
+    }
+  }
+}

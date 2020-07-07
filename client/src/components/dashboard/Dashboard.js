@@ -2,7 +2,7 @@ import React, {useEffect, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getCurrentUsersProfile} from '../../actions/profile';
+import {getCurrentUsersProfile, deleteAccount} from '../../actions/profile';
 
 //components
 import Spinner from '../layout/Spinner';
@@ -10,6 +10,7 @@ import DashboardActions from './DashboardActions';
 
 const Dashboard = ({
   getCurrentUsersProfile,
+  deleteAccount,
   auth: {user},
   profile: {profile, loading},
 }) => {
@@ -23,23 +24,31 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className="large text-primary">Profile</h1>
+      <h1 className="large text-primary"> Profile </h1>{' '}
       <p>
-        <i className="fas fa-user"></i>Welcome {user && user.name}
-      </p>
+        <i className="fas fa-user"> </i>Welcome {user && user.name}{' '}
+      </p>{' '}
       {profile !== null ? (
         <Fragment>
-          {/* If the users profile does exist, allow them to edit the profile by mounting this component here which has a link [designed as a button] to go to the /edit-profile route */}
+          {' '}
+          {/* If the users profile does exist, allow them to edit the profile by mounting this component here which has a link [designed as a button] to go to the /edit-profile route */}{' '}
           <DashboardActions />
+          <button
+            className="ui red button"
+            style={{marginTop: '20px'}}
+            onClick={() => deleteAccount()}
+          >
+            Delete My Account
+          </button>
         </Fragment>
       ) : (
         <Fragment>
-          <p>You have not yet setup a profile. Please add some info</p>
+          <p> You have not yet setup a profile.Please add some info </p>{' '}
           <Link to="/create-profile" className="ui green button">
-            Create Profile
-          </Link>
+            Create Profile{' '}
+          </Link>{' '}
         </Fragment>
-      )}
+      )}{' '}
     </Fragment>
   );
 };
@@ -50,11 +59,18 @@ Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
+  deleteAccount: PropTypes.func.isRequired,
 };
 
 // get profile and auth state
 const mapStateToProps = (state) => {
-  return {auth: state.auth, profile: state.profile};
+  return {
+    auth: state.auth,
+    profile: state.profile,
+  };
 };
 
-export default connect(mapStateToProps, {getCurrentUsersProfile})(Dashboard);
+export default connect(mapStateToProps, {
+  getCurrentUsersProfile,
+  deleteAccount,
+})(Dashboard);

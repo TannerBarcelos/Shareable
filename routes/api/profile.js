@@ -9,6 +9,7 @@ const router = express.Router(); //for routing [look at docs]
 // bring in profile model AND user to query db on these api hits
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Posts')
 
 /**
  * @route   GET api/profile/me 
@@ -164,7 +165,12 @@ router.get('/user/:user_id', async (req, res) => {
 router.delete('/', auth, async (req, res) => {
   try {
     // delete users profile
-    // @todo remove users posts
+    // emove users posts
+    await Post.deleteMany({
+      user: req.user.id
+    })
+
+
     await Profile.findOneAndRemove({
       user: req.user.id
     })
