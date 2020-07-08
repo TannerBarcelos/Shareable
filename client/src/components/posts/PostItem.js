@@ -16,11 +16,12 @@ const PostItem = ({
   showActions,
 }) => {
   return (
+    //change to 1 wide on small screen, 3 on ipad and all those queries ina custom css file for this file
     <div className="four wide column">
       <div className="ui card">
         <div className="content">
           <div className="right floated meta">
-            {<Moment format="YYYY/MM/DD">{date}</Moment>}
+            {<Moment format="MM/DD/YYYY">{date}</Moment>}
           </div>
           <Link to={`/profile/${user}`}>
             <img className="ui avatar image" src={avatar} />
@@ -47,10 +48,11 @@ const PostItem = ({
               </span>
               <Link to={`/posts/${_id}`}>
                 <i className="far fa-comment" style={{fontSize: '30px'}}></i>
-                {comments.length > 0 && <span>{comments.length} comments</span>}
+                {comments.length > 0 && <span>{comments.length}</span>}
               </Link>
               <br />
-              {likes.length > 0 && <span>{likes.length}likes</span>}
+              {/**change styling here */}
+              {likes.length > 0 && <span>{likes.length}</span>}
               <br />
               {!auth.loading && user === auth.user._id && (
                 <span>

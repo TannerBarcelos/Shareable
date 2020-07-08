@@ -42,31 +42,31 @@ const App = () => {
       <Router>
         <div className="ui container">
           <Navbar />
-          <Route exact path="/" component={Landing} />{' '}
+          <Route exact path="/" component={Landing} />
           <section>
             <Alert />
             <Switch>
-              <Route exact path="/register" component={Register} />{' '}
-              <Route exact path="/login" component={Login} />{' '}
-              <Route exact path="/profile/:id" component={Profile} />{' '}
-              {/**private route component to protect routes in switch so you have to be authed to go to it: see routing/PrivateRoute to see implementation */}{' '}
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />{' '}
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/profile/:id" component={Profile} />
+              {/**private route component to protect routes in switch so you have to be authed to go to it: see routing/PrivateRoute to see implementation */}
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute
                 exact
                 path="/create-profile"
                 component={CreateProfile}
-              />{' '}
+              />
               <PrivateRoute
                 exact
                 path="/edit-profile"
                 component={EditProfile}
-              />{' '}
-              <PrivateRoute exact path="/posts" component={Posts} />{' '}
-              <PrivateRoute exact path="/posts/:id" component={Post} />{' '}
-            </Switch>{' '}
-          </section>{' '}
-        </div>{' '}
-      </Router>{' '}
+              />
+              <PrivateRoute exact path="/posts" component={Posts} />
+              <PrivateRoute exact path="/posts/:id" component={Post} />
+            </Switch>
+          </section>
+        </div>
+      </Router>
     </Provider>
   );
 };

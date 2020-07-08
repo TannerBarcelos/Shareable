@@ -10,47 +10,52 @@ const ProfileMain = ({
   },
 }) => {
   return (
-    <div className="card">
+    <div
+      className="card"
+      style={{
+        width: '30rem',
+        padding: '15px',
+      }}
+    >
       <div className="image">
-        <img src={avatar} />
+        <img src={avatar} style={{borderRadius: '50%'}} />{' '}
         <div className="content">
-          <div className="header">{name}</div>
+          <div className="header"> {name} </div>{' '}
           <div className="meta">
-            <p>Location: {location && <span>{location}</span>}</p>
-          </div>
-        </div>
-      </div>
+            <p> Location: {location && <span> {location} </span>}</p>
+          </div>{' '}
+        </div>{' '}
+      </div>{' '}
       <div className="description">
         <p>
-          <i class="far fa-address-card"></i>
-          {bio}
-        </p>
+          <i class="far fa-address-card"> </i> {bio}{' '}
+        </p>{' '}
         {social && social.twitter && (
           <a href={social.twitter} target="blank" rel="noopener noreferrer">
-            <i class="fab fa-twitter"></i>
+            <i class="fab fa-twitter"> </i>{' '}
           </a>
-        )}
+        )}{' '}
         {social && social.instagram && (
           <a href={social.instagram} target="blank" rel="noopener noreferrer">
-            <i class="fab fa-instagram"></i>
+            <i class="fab fa-instagram"> </i>{' '}
           </a>
-        )}
+        )}{' '}
         {social && social.facebook && (
           <a href={social.facebook} target="blank" rel="noopener noreferrer">
-            <i class="fab fa-facebook"></i>
+            <i class="fab fa-facebook"> </i>{' '}
           </a>
-        )}
+        )}{' '}
         {social && social.linkedin && (
           <a href={social.linkedin} target="blank" rel="noopener noreferrer">
-            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-linkedin"> </i>{' '}
           </a>
-        )}
+        )}{' '}
         {social && social.youtube && (
           <a href={social.youtube} target="blank" rel="noopener noreferrer">
-            <i class="fab fa-youtube"></i>
+            <i class="fab fa-youtube"> </i>{' '}
           </a>
-        )}
-      </div>
+        )}{' '}
+      </div>{' '}
     </div>
   );
 };

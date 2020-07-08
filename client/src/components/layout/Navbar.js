@@ -20,14 +20,14 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
     <div className="right menu">
       <Link to="/dashboard" className="item active">
         <i className="fas fa-user" />
-        Profile
-      </Link>
+        Profile Settings{' '}
+      </Link>{' '}
       <Link to="/posts" className="item active">
-        <i className="fas fa-th-list"> </i> Feed
-      </Link>
+        <i className="fas fa-th-list"> </i> Feed{' '}
+      </Link>{' '}
       <Link to="/" className="item active" onClick={logout}>
-        <i className="fas fa-sign-out-alt"> </i> Logout
-      </Link>
+        <i className="fas fa-sign-out-alt"> </i> Logout{' '}
+      </Link>{' '}
     </div>
   );
 

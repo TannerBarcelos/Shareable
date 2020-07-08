@@ -13,7 +13,11 @@ const PostForm = ({addPost}) => {
   };
 
   return (
-    <form className="ui form" onSubmit={onSubmit}>
+    <form
+      className="ui form"
+      onSubmit={onSubmit}
+      style={{marginBottom: '20px'}}
+    >
       <div className="field">
         <label>What's on your mind?</label>
         <textarea value={text} onChange={(e) => setText(e.target.value)} />

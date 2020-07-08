@@ -15,8 +15,9 @@ const Posts = ({getPosts, post: {posts, loading}}) => {
     <Spinner />
   ) : (
     <div>
-      <i class="far fa-plus-square" style={{fontSize: '30px'}}></i>
+      {/* <i class="far fa-plus-square" style={{fontSize: '30px'}}></i> */}
       <PostForm />
+      {/**change from grid to a normal ui container and make each post the whole width or justr media query the cards for different screen sizes*/}
       <div className="ui grid" style={{marginTop: '20px'}}>
         {posts.map((post) => (
           <PostItem key={post._id} post={post} />
